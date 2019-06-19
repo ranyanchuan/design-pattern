@@ -1,4 +1,5 @@
-[https://segmentfault.com/a/1190000017787537?utm_source=tag-newest#articleHeader3](https://segmentfault.com/a/1190000017787537?utm_source=tag-newest#articleHeader3)
+[JavaScript中常用的设计模式](https://segmentfault.com/a/1190000017787537?utm_source=tag-newest#articleHeader3)
+
 [观察者模式](https://www.cnblogs.com/leejersey/p/4244332.html)
 
 ### 设计模式简介
