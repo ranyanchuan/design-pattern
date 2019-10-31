@@ -80,3 +80,72 @@ MVC 模式（MVC Pattern）
 
 6、**合成复用原则（Composite Reuse Principle）**  
 合成复用原则是指：尽量使用合成/聚合的方式，而不是使用继承。  
+
+##### 观察者模式
+```js
+ //订阅类
+    class Subject {
+
+        constructor() {
+            this.state = 0;
+            this.observers = [];  //所有的观察者
+        }
+
+        getState() {
+            return this.state;
+        }
+
+        setState(state) {
+            this.state = state
+            this.notifyAllObservers();
+        }
+
+        notifyAllObservers() {
+            this.observers.forEach(observer => {
+                observer.update();
+            })
+        }
+
+        attach(observer) {
+            this.observers.push(observer);
+        }
+
+        // 删除观察者
+        deleteObservers(observer) {
+             
+            this.observers = this.observers.filter((item) => {
+                const {name} = item;
+                return observer.name !== name;
+            })
+
+        }
+
+    }
+
+    //观察者类
+    class Observer {
+        constructor(name, subject) {
+            this.name = name;
+            this.subject = subject;
+            this.subject.attach(this); //把观察者添加到主题中观察者列表上来
+        }
+
+        update() {
+            console.log(`${this.name} update, state: ${this.subject.getState()}`);
+        }
+    }
+
+    let s = new Subject();
+    let o1 = new Observer('o1', s);
+    let o2 = new Observer('o2', s);
+    let o3 = new Observer('o3', s);
+
+    s.deleteObservers(o1);
+
+    s.setState(1);
+    s.setState(2);
+    s.setState(3);
+```
+
+
+
