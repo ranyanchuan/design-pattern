@@ -199,6 +199,52 @@ const player = function (name) {
     // B 选手挑战成功;
     // C 选手挑战失败;
 ```
+##### 命令模式
+```js
+
+    // 命令
+    var CreateCommand = function( receiver ){
+        this.receiver = receiver;
+    }
+
+    CreateCommand.prototype.execute = function() {
+        this.receiver.action();
+    }
+
+
+    // 接收者 电视
+    var TVOn = function() {}
+    TVOn.prototype.action = function() {
+        alert("TVOn");
+    }
+    
+    // 接收者 电视
+    var TVOff = function() {}
+    TVOff.prototype.action = function() {
+        alert("TVOff");
+    }
+
+
+    // 调用者 遥控器
+    var Invoker = function( tvOnCommand, tvOffCommand ) {
+        this.tvOnCommand = tvOnCommand;
+        this.tvOffCommand = tvOffCommand;
+    }
+    Invoker.prototype.tvOn = function() {
+        this.tvOnCommand.execute();
+    }
+    Invoker.prototype.tvOff = function() {
+        this.tvOffCommand.execute();
+    }
+
+
+    var tvOnCommand = new CreateCommand( new TVOn() );
+    var tvOffCommand = new CreateCommand( new TVOff() );
+    var invoker = new Invoker( tvOnCommand, tvOffCommand );
+
+    invoker.tvOn();
+    invoker.tvOff();
+```
 
 
 
