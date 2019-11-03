@@ -271,6 +271,43 @@ let timeTool = (function() {
 
     console.log(timeTool('param').param);
     console.log(timeTool('param').getUTCDate());
+    
+//===================
+class SingletonApple {
+  constructor(name, creator, products) {
+    //首次使用构造器实例
+    if (!SingletonApple.instance) {
+      this.name = name;
+      this.creator = creator;
+      this.products = products;
+      //将this挂载到SingletonApple这个类的instance属性上
+      SingletonApple.instance = this;
+    }
+    return SingletonApple.instance;
+  }
+}
+//===================
+class SingletonApple {
+  constructor(name, creator, products) {
+      this.name = name;
+      this.creator = creator;
+      this.products = products;
+  }
+  //静态方法
+  static getInstance(name, creator, products) {
+    if(!this.instance) {
+      this.instance = new SingletonApple(name, creator, products);
+    }
+    return this.instance;
+  }
+}
+
+let appleCompany = SingletonApple.getInstance('苹果公司', '乔布斯', ['iPhone', 'iMac', 'iPad', 'iPod']);
+let copyApple = SingletonApple.getInstance('苹果公司', '阿辉', ['iPhone', 'iMac', 'iPad', 'iPod'])
+
+console.log(appleCompany === copyApple); //true
+
+    
 ```
 
 
