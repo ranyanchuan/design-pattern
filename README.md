@@ -246,5 +246,32 @@ const player = function (name) {
     invoker.tvOff();
 ```
 
+##### 单例模式
+```js
+let timeTool = (function() {
+        let _instance = null;
+
+        function init(param) {
+            //私有变量
+            let now = new Date();
+            this.param=param;
+            //公用属性和方法
+            this.getUTCDate = function() {
+                return now.toUTCString();
+            }
+        }
+
+        return function(param) {
+            if(!_instance) {
+                _instance = new init(param);
+            }
+            return _instance;
+        }
+    })()
+
+    console.log(timeTool('param').param);
+    console.log(timeTool('param').getUTCDate());
+```
+
 
 
